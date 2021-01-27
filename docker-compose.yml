@@ -1,8 +1,8 @@
 version: '3.3'
 services:
   tirith-ui:
-    container_name: 'dlc-oracle'
-    build: '.'
+    image: 'robertwilliamallen/tirith-ui-app'
+    container_name: 'tirith-ui'
     ports:
       - '80:80'
     restart: always
