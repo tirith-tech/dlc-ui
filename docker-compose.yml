@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   tirith-ui:
-    image: 'robertwilliamallen/tirith-ui-app'
+    image: 'robertwilliamallen/tirithui'
     container_name: 'tirith-ui'
     ports:
       - '80:80'
