@@ -1,0 +1,142 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div *ngIf="pubKey" class="card align-items-right">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-baseline">
+          <h3 class="title">Bitcoin Discreet Log Contract Oracle</h3>
+          <button type="button" class="btn btn-primary align-items-right" [cdkCopyToClipboard]="pubKey">
+            <h6>Copy PubKey to Clipboard</h6>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div *ngFor="let ds of dataSources; index as i" class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-baseline">
+          <div class="pair">
+            <img src='{{ "../assets/images/symbols/" + ds.name.substr(0, 3) + ".png" }}'>
+            <h4 class="card-title mb-0">{{ ds.name }}</h4>
+          </div>
+          <h2 class="mb-4">{{ ds.currentValue }}<span class="small-text">sats</span></h2>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="mt-md-3 mt-xl-0">
+              <apx-chart [series]="ds.series" [colors]="apexChartOptions.colors"
+                [chart]="apexChartOptions.chart" [markers]="apexChartOptions.markers" [stroke]="apexChartOptions.stroke"
+                [tooltip]="apexChartOptions.tooltip" [theme]="apexChartOptions.theme" [xaxis]="apexChartOptions.xaxis"></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6 col-xs-12 col-sm-12 col-md-6">
+            <div class="d-flex flex-nowrap text-nowrap mb-10">
+              <div class="input-group dashboard-date mr-2">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-primary btn-icon calendar" type="button" (click)="d.toggle()">
+                    <i data-feather="calendar" appFeatherIcon></i>
+                  </button>
+                </div>
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="pubDate" ngbDatepicker
+                  #d="ngbDatepicker" [minDate]="{year: 2021, month: 1, day: 25}" [maxDate]="lastPublicationDate">
+              </div>
+              <button type="button" class="btn btn-primary btn-icon-text mb-md-0" (click)="getPublication(ds.name, i)">
+                Get Publication
+              </button>
+            </div>
+          </div>
+          <div class="col-6 col-xs-12 col-sm-12 col-md-6">
+            <div class="d-flex flex-nowrap text-nowrap mb-10 align-items-right">
+              <div class="input-group dashboard-date mr-2 ml-2">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-primary btn-icon calendar" type="button" (click)="dr.toggle()">
+                    <i data-feather="calendar" appFeatherIcon></i>
+                  </button>
+                </div>
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="rPointDate" ngbDatepicker
+                  #dr="ngbDatepicker" [minDate]="{year: 2021, month: 1, day: 25}">
+              </div>
+              <button type="button" class="btn btn-secondary btn-icon-text mb-md-0" (click)="getRPoint(i)">
+                Get rPoint
+              </button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div *ngIf="publications[i]" class="card-body">
+          <div class="row">
+            <div class="col-lg-12 col-xl-12 stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <h6 class="card-title mb-0">Publication</h6>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table mb-0">
+                      <thead>
+                        <tr>
+                          <th class="pt-0">Time</th>
+                          <th class="pt-0">Sats Value</th>
+                          <th class="pt-0">Signature</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{{ publications[i].timestamp * 1000 | date:'medium'}}</td>
+                          <td>{{ publications[i].value }}</td>
+                          <td>{{ publications[i].signature | slice:0:25 }}...</td>
+                          <td><button class="btn btn-outline-info" [cdkCopyToClipboard]="publications[i].signature">Copy Signature to
+                            Clipboard</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div> <!-- row -->
+        </div>
+        <br>
+        <div *ngIf="rPoints[i]" class="card-body">
+          <div class="row">
+            <div class="col-lg-12 col-xl-12 stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-baseline mb-2">
+                    <h6 class="card-title mb-0">rPoint</h6>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table mb-0">
+                      <thead>
+                        <tr>
+                          <th class="pt-0">Time</th>
+                          <th class="pt-0">rPoint</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{{ timestampFromDate(rPointDate) * 1000 | date:'medium'}}</td>
+                          <td>{{ rPoints[i].R }}</td>
+                          <td><button class="btn btn-outline-info" [cdkCopyToClipboard]="rPoints[i].R">Copy rPoint to
+                              Clipboard</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- row -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
