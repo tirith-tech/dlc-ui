@@ -13,11 +13,15 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
-      // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
+      {
+        path: 'docs',
+        loadChildren: () => import('./views/pages/documentation/documentation.module').then(m => m.DocumentationModule)
+      },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
-  { 
+  {
     path: 'error',
     component: ErrorPageComponent,
     data: {

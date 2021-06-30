@@ -9,7 +9,7 @@ import { LayoutModule } from './views/layout/layout.module';
 import { AppComponent } from './app.component';
 import { ErrorPageComponent } from './views/pages/error-page/error-page.component';
 
-import { DataService } from './data.service';
+import { DataService }            from './data.service';
 
 @NgModule({
   declarations: [

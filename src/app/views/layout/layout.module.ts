@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { NgModule }          from '@angular/core';
+import { CommonModule }      from '@angular/common';
+import { RouterModule }      from '@angular/router';
+import { FormsModule }       from '@angular/forms';
+import { FeahterIconModule } from '../../core/feather-icon/feather-icon.module';
 
 import { BaseComponent } from './base/base.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -21,14 +22,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 @NgModule({
   declarations: [BaseComponent, NavbarComponent, SidebarComponent, FooterComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    NgbDropdownModule,
-    NgbCollapseModule,
-    PerfectScrollbarModule
-  ],
+            imports: [
+              CommonModule,
+              RouterModule,
+              FormsModule,
+              NgbDropdownModule,
+              NgbCollapseModule,
+              PerfectScrollbarModule,
+              FeahterIconModule,
+            ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
   public pubKey: string;
 
   constructor(
-    private calendar: NgbCalendar, 
+    private calendar: NgbCalendar,
     private dataService: DataService
   ) {
     /**
@@ -64,12 +64,12 @@ export class DashboardComponent implements OnInit {
         type: "line",
         height: 200,
         toolbar: {
-          show: false
+          show: true
         }
       },
       stroke: {
         width: 2,
-        curve: "straight"
+        curve: "smooth"
       },
       markers: {
         size: 0
@@ -164,7 +164,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getPublication(name: string, id: number) {
-    this.dataService 
+    this.dataService
       .getPublicationByNameAndTimestamp(name, this.timestampFromDate(this.pubDate))
       .subscribe((data: Publication) => {
         this.publications[id] = data;

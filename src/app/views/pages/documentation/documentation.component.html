@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card align-items-right">
+      <div class="card-body">
+        <ngb-accordion
+          [closeOthers]="true"
+          activeIds="faq1"
+        >
+          <ngb-panel
+            id="faq1"
+            title="What is a Discreet Log Contract?"
+          >
+            <ng-template ngbPanelContent>
+              In 2017, Tadge Dryja published a paper on Discreet Log Contracts.
+
+              By creating a Discreet Log Contract, Alice can form a contract paying Bob some time in the future, based on preset conditions,
+              without committing any details of those conditions to the blockchain. Therefore it is discreet in the sense that no external
+              observer can learn its existence from the public ledger. This contract depends on an external entity or entities publishing a
+              signed message at some point in the future (before the expiration of the contract). The contents of this signed message
+              determine the division of the funds committed to the contract. This external entity is called an “oracle”. Using Discreet Log
+              Contracts, the signature published by the oracle gives each participant of the contract the possibility to claim the amount
+              from the contract that is due him without the need for cooperation from the other party.
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel
+            id="faq2"
+            title="What is the Oracle PubKey?"
+          >
+            <ng-template ngbPanelContent>
+              In order to act as a participant in a Discreet Log Contract, an oracle must use a private/public cryptographic key pair. The
+              private key is used in conjunction with a unique one-time-signing key for each message. The private key of the oracle never
+              changes, and its public key is incorporated into Discreet Log Contracts that people form.
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel
+            id="faq3"
+            title="What is an rPoint?"
+          >
+            <ng-template ngbPanelContent>
+              the R value is committed in advance of the signature being calculated; the message to be signed is not yet known, but a nonce
+              has been chosen and an R point published. (This prevents the use of some deterministic nonce schemes such as RFC6979).
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+    </div>
+  </div>
+</div>

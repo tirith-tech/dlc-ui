@@ -6,4 +6,9 @@ export const MENU: MenuItem[] = [
     icon: 'home',
     link: '/dashboard'
   },
+  {
+    label: 'Documentation',
+    icon: 'book-open',
+    link: '/docs'
+  },
 ];
