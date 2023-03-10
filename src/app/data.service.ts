@@ -31,7 +31,7 @@ export interface PubKey {
 })
 export class DataService {
 
-  private REST_API_SERVER = "http://api.tirith.io/api";
+  private REST_API_SERVER = 'https://api.discreetlogcontract.tech/api';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -48,7 +48,7 @@ export class DataService {
       {responseType: 'json'}
     );
   }
-  
+
   public getPublicationByNameAndTimestamp(pair: string, timestamp: number): Observable<Publication> {
     return this.httpClient.get<Publication>(
       this.REST_API_SERVER + '/pub/tradepair/' + pair + '/' + timestamp,
